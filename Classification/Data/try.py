@@ -1,0 +1,18 @@
+import json
+# {'alert_id': 'd49cd699-e9ee-48bb-a4c8-5f2818f0d011', 'source': 'mossad', 'title': 'פעילות חריגה באתר אסטרטגי', 'content': 'זוהתה פעילות חריגה באתר גרעיני באזור חומס, סוריה.', 'priority': 'HIGH', 'classification': 'TOP_SECRET', 'lat': 34.7323, 'lon': 36.7159, 'timestamp': '2026-10-05T13:56:13.499Z', 'status': 'WAITING'}
+# b'{\n  "alert_id": "d49cd699-e9ee-48bb-a4c8-5f2818f0d011",\n  "source": "mossad",\n  "title": "\\u05e4\\u05e2\\u05d9\\u05dc\\u05d5\\u05ea \\u05d7\\u05e8\\u05d9\\u05d2\\u05d4 \\u05d1\\u05d0\\u05ea\\u05e8 \\u05d0\\u05e1\\u05d8\\u05e8\\u05d8\\u05d2\\u05d9",\n  "content": "\\u05d6\\u05d5\\u05d4\\u05ea\\u05d4 \\u05e4\\u05e2\\u05d9\\u05dc\\u05d5\\u05ea \\u05d7\\u05e8\\u05d9\\u05d2\\u05d4 \\u05d1\\u05d0\\u05ea\\u05e8 \\u05d2\\u05e8\\u05e2\\u05d9\\u05e0\\u05d9 \\u05d1\\u05d0\\u05d6\\u05d5\\u05e8 \\u05d7\\u05d5\\u05de\\u05e1, \\u05e1\\u05d5\\u05e8\\u05d9\\u05d4.",\n  "priority": "HIGH",\n  "classification": "TOP_SECRET",\n  "lat": 34.7323,\n  "lon": 36.7159,\n  "timestamp": "2026-10-05T13:56:13.499Z",\n  "status": "WAITING"\n}\n'
+# {'alert_id': '8d9b733f-b9bc-4e2e-909c-e3063759cd7f', 'source': 'aman', 'title': 'זוהה שיגור רקטות', 'content': 'זוהו 29 שיגורים מרצועת עזה לעבר אזור עומר. צפויות התרעות באזור.', 'priority': 'CRITICAL', 'classification': 'SECRET', 'lat': 31.2654, 'lon': 34.8475, 'timestamp': '2026-10-05T13:56:15.126Z', 'status': 'WAITING'}
+# b'{\n  "alert_id": "8d9b733f-b9bc-4e2e-909c-e3063759cd7f",\n  "source": "aman",\n  "title": "\\u05d6\\u05d5\\u05d4\\u05d4 \\u05e9\\u05d9\\u05d2\\u05d5\\u05e8 \\u05e8\\u05e7\\u05d8\\u05d5\\u05ea",\n  "content": "\\u05d6\\u05d5\\u05d4\\u05d5 29 \\u05e9\\u05d9\\u05d2\\u05d5\\u05e8\\u05d9\\u05dd \\u05de\\u05e8\\u05e6\\u05d5\\u05e2\\u05ea \\u05e2\\u05d6\\u05d4 \\u05dc\\u05e2\\u05d1\\u05e8 \\u05d0\\u05d6\\u05d5\\u05e8 \\u05e2\\u05d5\\u05de\\u05e8. \\u05e6\\u05e4\\u05d5\\u05d9\\u05d5\\u05ea \\u05d4\\u05ea\\u05e8\\u05e2\\u05d5\\u05ea \\u05d1\\u05d0\\u05d6\\u05d5\\u05e8.",\n  "priority": "CRITICAL",\n  "classification": "SECRET",\n  "lat": 31.2654,\n  "lon": 34.8475,\n  "timestamp": "2026-10-05T13:56:15.126Z",\n  "status": "WAITING"\n}\n'
+# b'{\n  "alert_id": "2de6d565-3ab8-4b44-8b39-8613a1f6649b",\n  "source": "mossad",\n  "title": "\\u05ea\\u05e0\\u05d5\\u05e2\\u05ea \\u05e4\\u05e2\\u05d9\\u05dc \\u05e2\\u05d5\\u05d9\\u05df \\u05d1\\u05d9\\u05df \\u05de\\u05d3\\u05d9\\u05e0\\u05d5\\u05ea",\n'
+# message cant be processed
+# {'alert_id': '2b1afb32-1ea0-478b-8f4a-f3f562be9e58', 'source': 'shabak', 'title': 'רכב חשוד', 'content': 'זוהה טנדר חשוד בצבע כחול באזור גן יבנה.', 'priority': 'MEDIUM', 'classification': 'RESTRICTED', 'lat': 31.7872, 'lon': 34.701, 'timestamp': '2026-10-05T13:56:17.366Z', 'status': 'WAITING'}
+
+# x = b'{\n  "alert_id": "d623b722-f07e-4387-9150-008f4371bed1",\n  "source": "aman",\n  "title": "\\u05d6\\u05d5\\u05d4\\u05d5 \\u05d4\\u05db\\u05e0\\u05d5\\u05ea \\u05dc\\u05e9\\u05d9\\u05d2\\u05d5\\u05e8",\n  "content": "\\u05d6\\u05d5\\u05d4\\u05d5 \\u05d4\\u05db\\u05e0\\u05d5\\u05ea \\u05d'
+# x = b'{\n  "alert_id": "2de6d565-3ab8-4b44-8b39-8613a1f6649b",\n  "source": "mossad",\n  "title": "\\u05ea\\u05e0\\u05d5\\u05e2\\u05ea \\u05e4\\u05e2\\u05d9\\u05dc \\u05e2\\u05d5\\u05d9\\u05df \\u05d1\\u05d9\\u05df \\u05de\\u05d3\\u05d9\\u05e0\\u05d5\\u05ea",\n'
+
+x = b'{  "priority": "HIGH",\n  "classification": "RESTRICTED",\n  "lat": 30.9906,'
+
+x = x.decode(encoding="utf-8")
+
+x = json.loads(x) # json.loads(x)
+print(x)
