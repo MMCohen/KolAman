@@ -5,6 +5,7 @@ namespace Chamal.Handler
     {
         public string _msg { get; private set; } = string.Empty;
         public bool isAlertImportent { get; private set; }
+        public bool isEmergencyAlertDetected { get; private set; } = false;
 
         public static HandlerResult NotImportent(string msg)
         {
@@ -25,7 +26,15 @@ namespace Chamal.Handler
             };
         }
 
-
+        public static HandlerResult EmergencyAlert(string msg)
+        {
+            return new HandlerResult
+            {
+                _msg = msg,
+                isAlertImportent = true,
+                isEmergencyAlertDetected = true
+            };
+        }
 
     }
 }

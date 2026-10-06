@@ -1,5 +1,6 @@
 ﻿using Chamal.Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,19 @@ namespace Chamal.Handler
 {
     public class AlertHandler
     {
+        public static Dictionary<string, Dictionary<DateTime, int>> stash = new Dictionary<string, Dictionary<DateTime, int>>();
+
+
         public async static Task<HandlerResult> HandleAsync(Alert alert)
         {
+            RefreshStash();
+            //var title = alert.title;
+            //Dictionary<string, int> dict = new Dictionary<string, int>();
+            //dict.Add(alert.timestamp, 1);
+            //{ }
+            //;
+            //stash.Add(alert.title, alert.timestamp, 1);
+
             if (alert.classification == "TOP_SECRET")
             {
                 return await TopImportentAsync(alert);
@@ -65,5 +77,23 @@ namespace Chamal.Handler
             Console.WriteLine($"end timestamp: {DateTime.UtcNow}");
             return HandlerResult.NotImportent("not importent");
         }
+
+        //public static void RefreshStash()
+        //{
+        //    foreach (var alertTitle in stash)
+        //    {
+        //        foreach (var x in alertTitle.Value)
+        //        {
+        //            var stashDate = DateTime.Parse(x.Key);
+        //            var now = DateTime.UtcNow;
+        //                double differenc = (now - stashDate).TotalSeconds;
+
+        //            if (differenc > 60)
+        //            {
+        //                stash.Remove(alertTitle.Key);
+        //            }
+        //        }
+        //    }
+        //}
     }
 }
