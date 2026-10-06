@@ -66,6 +66,12 @@ if __name__ == "__main__":
                 else:
                     print("message has been validate")
 
+                ## location
+                lon = msg_dict["lon"]
+                lat = msg_dict["lat"]
+                location_in_charge = get_region_with_geopandas("regions.geojson",lon, lat)
+                print(location_in_charge)
+
                 ##
     finally:
         kafka_consumer.close()
