@@ -7,6 +7,7 @@ from Data.KafkaConnection import get_kafka_Consumer
 from Data.RedisConnection import exist_in_redis, add_to_reddis
 from validator.validator import validate
 from Utils.Utils import get_region_with_geopandas, msg_process
+from Data.RabbitConnection import get_rabbit_connection
 
 REDIS_TTL = 300
 
@@ -30,6 +31,7 @@ if __name__ == "__main__":
     # logger.warning("Its a warning")
     # logger.error("Did you try to divide by zero?")
     # logger.critical("Internet is down")
+    rabbit_connection_channel = get_rabbit_connection()
 
     try:
         kafka_consumer = get_kafka_Consumer()
@@ -48,30 +50,38 @@ if __name__ == "__main__":
             else:
                 ## try to convert to dict
                 try:
-                    msg_dict = msg_process(msg)
+                    alert_dict = msg_process(msg)
                 except json.decoder.JSONDecodeError:
                     my_logger(f"alert could not be parse. probably defect | alert: {msg.value()}")
 
                 ## redis
-                if not exist_in_redis(msg_dict):
-                    add_to_reddis(msg_dict, ttl=REDIS_TTL)
+                if not exist_in_redis(alert_dict):
+                    add_to_reddis(alert_dict, ttl=REDIS_TTL)
                 else:
-                    my_logger(f"alert already sent in the last few minutes | {msg_dict}")
+                    my_logger(f"alert already sent in the last few minutes | {alert_dict}")
                     continue
                 ## start validate
-                if not validate(msg_dict):
-                    my_logger(f"alert could not be validate | {msg_dict}")
+                if not validate(alert_dict):
+                    my_logger(f"alert could not be validate | {alert_dict}")
                     continue
 
                 else:
                     print("message has been validate")
 
                 ## location
-                lon = msg_dict["lon"]
-                lat = msg_dict["lat"]
+                lon = alert_dict["lon"]
+                lat = alert_dict["lat"]
                 location_in_charge = get_region_with_geopandas("regions.geojson",lon, lat)
                 print(location_in_charge)
 
-                ##
+                ## rabbit
+                rabbit_connection_channel.queue_declare(queue=location_in_charge,
+                                                        durable=True,
+                                                        arguments={'x-queue-type': 'quorum'})
+
+                rabbit_connection_channel.basic_publish("",
+                                                        routing_key=location_in_charge,
+                                                        body=json.dumps(alert_dict))
     finally:
         kafka_consumer.close()
+        rabbit_connection_channel.close()
