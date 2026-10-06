@@ -7,7 +7,7 @@ var alertHandler = new AlertHandler();
 
 while (true)
 {
-    var context = new ChamalDbContext();
+    var context = new ChamalDbContext(); 
 
 
     Alert? alert = context.Alerts
@@ -42,4 +42,4 @@ while (true)
 //}
 ////x.status = "WAITING";
 
-//context.SaveChanges();
+//context.SaveChanges(); .
