@@ -91,6 +91,10 @@ def validate(msg: dict) -> bool:
         print(f"field is mising in the alert | {msg}") ## todo: change to logger
         return False
 
+    except TypeError as ex:
+        print(f"exepepted one type. got another | {msg} | {ex}") ## todo: change to logger
+        return False
+
     finally:
         print("goodbye")
 
