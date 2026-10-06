@@ -8,8 +8,8 @@ using System.Text.Json.Nodes;
 
 
 // create mysql database if not exist
-var cont = new CommandDbContext();
-cont.Database.EnsureCreated();
+var context = new CommandDbContext();
+context.Database.EnsureCreated();
 
 // conection to rabbit
 var factory = new ConnectionFactory { HostName = "localhost" };
@@ -80,6 +80,6 @@ Console.ReadLine();
 //    title = "sdfsd"
 //};
 
-//cont.Alerts.Add(alert);
-//cont.SaveChanges();
+//context.Alerts.Add(alert);
+//context.SaveChanges();
 
