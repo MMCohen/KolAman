@@ -1,3 +1,6 @@
+import json
+
+import confluent_kafka
 from shapely.geometry import Point, Polygon
 import geopandas as gpd
 from shapely.geometry import Point
@@ -29,8 +32,19 @@ def get_region_with_geopandas(file_path: str, lon: float, lat: float) -> str:
         return matched.iloc[0]["region"]
     return "OVERSEAS"
 
+
+def msg_process(msg: confluent_kafka.cimpl.Message):
+    """
+    gets plain kafka msg and try to convert it to dict
+    """
+    value = msg.value().decode()
+
+    text_dict = json.loads(value)
+
+    return text_dict
+
 if __name__ == "__main__":
 
     # --- דוגמת שימוש ---
-    region = get_region_with_geopandas("..\\regions.geojson", 34.800, 32.100)
+    region = get_region_with_geopandas("..\\regions.geojson", 34.800, 32.400)
     print(region)

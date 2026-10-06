@@ -65,36 +65,30 @@ def validat_timestamp(processed_message):
         return False
     return True
 
-def validate(msg: confluent_kafka.cimpl.Message) -> bool:
+def validate(msg: dict) -> bool:
     try:
-        processed_message = msg_process(msg)
-    except json.decoder.JSONDecodeError:
-        print(msg.value())
-        print("message cant be processed")
-        return False
-
-    try:
-        if not validat_source(processed_message):
+        if not validat_source(msg):
             return False
 
-        if not validat_title(processed_message):
+        if not validat_title(msg):
             return False
 
-        if not validat_priority(processed_message):
+        if not validat_priority(msg):
             return False
 
-        if not validat_classification(processed_message):
+        if not validat_classification(msg):
             return False
 
-        if not validat_lon_and_lat(processed_message):
+        if not validat_lon_and_lat(msg):
             return False
 
-        if not validat_timestamp(processed_message):
+        if not validat_timestamp(msg):
             return False
 
         return True
 
     except KeyError:
+        print(f"field is mising in the alert | {msg}") ## todo: change to logger
         return False
 
     finally:

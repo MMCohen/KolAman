@@ -2,3 +2,6 @@
 bin/
 obj/
 alert-simulator/
+ignore/
+.idea/
+__pycache__/

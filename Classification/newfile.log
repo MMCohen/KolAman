@@ -1,0 +1,10 @@
+2026-10-06 10:19:06,960 DEBUG: Harmless debug message
+2026-10-06 10:19:06,960 INFO: Just an information
+2026-10-06 10:19:06,960 WARNING: Its a warning
+2026-10-06 10:19:06,960 ERROR: Did you try to divide by zero?
+2026-10-06 10:19:06,960 CRITICAL: Internet is down
+2026-10-06 10:21:18,131 DEBUG: Harmless debug message
+2026-10-06 10:21:18,131 INFO: Just an information
+2026-10-06 10:21:18,132 WARNING: Its a warning
+2026-10-06 10:21:18,132 ERROR: Did you try to divide by zero?
+2026-10-06 10:21:18,132 CRITICAL: Internet is down
